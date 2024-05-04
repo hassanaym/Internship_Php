@@ -9,27 +9,35 @@
 <body>
     <main>
         <section class="nav-items-container">
-            <a href="departements.php">
-                <section class="nav-item">
+            <a href="departements.php" class="nav-item">
+                <section >
                     <img src="" alt="">
                     <h3>departements</h3>
                 </section>
             </a>
 
-            <section class="nav-item">
-                <img src="" alt="">
-                <h3>interns</h3>
-            </section>
+            <a href="departements.php" class="nav-item">
+                <section >
+                    <img src="" alt="">
+                    <h3>interns</h3>
+                </section>
+            </a>
 
-            <section class="nav-item">
-                <img src="" alt="">
-                <h3>internships</h3>
-            </section>
+            <a href="departements.php" class="nav-item">
+                <section >
+                    <img src="" alt="">
+                    <h3>internships</h3>
+                </section>
+            </a>
 
-            <section class="nav-item">
-                <img src="" alt="">
-                <h3>more</h3>
-            </section>
+            <a href="departements.php" class="nav-item">
+                <section >
+                    <img src="" alt="">
+                    <h3>more</h3>
+                </section>
+            </a>
+          
+            
     </section>
     </main>
 </body>
