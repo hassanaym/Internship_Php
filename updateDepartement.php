@@ -1,3 +1,15 @@
+<?php
+require_once('dbconnect.php');
+$stmt = $conn->prepare("Select * from departement where id=:i");
+
+$stmt->execute(
+  ['i' => $_GET['id']]
+);
+
+$dep = $stmt->fetch();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,10 +23,10 @@
 <body>
   <main class="login-main">
     <div class="form-container">
-      <form action="saveDepartement.php" method="post">
+      <form action="saveDepartement.php?id=<?php echo $_GET['id'] ?>" method="post">
         <div class="input-group">
           <label for="name">name</label>
-          <input type="text" name="name" id="name" class="name">
+          <input type="text" name="name" id="name" class="name" value="<?php echo $dep['name'] ?>">
         </div>
 
 
@@ -31,7 +43,7 @@
           ?>
         </div>
         <div class="input-group">
-          <button name="saveDepartement">save</button>
+          <button name="updateDepartement">update</button>
         </div>
 
       </form>
