@@ -1,10 +1,9 @@
 <?php
 require_once 'session.php';
 require_once 'dbconnect.php';
-$sql = 'Select d.*, firstname, lastname from departement as d inner join admin as a on a.id = d.idadmin';
+$sql = 'Select * from intern';
 $statement = $conn->query($sql);
-$deps = $statement->fetchAll(PDO::FETCH_ASSOC);
-session_start();
+$interns = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +14,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <title>List of departemets</title>
+    <title>List of interns</title>
 </head>
 
 <body>
@@ -34,7 +33,7 @@ session_start();
 
                             </li>
                             <li>
-                                <a href="newDepartement.php">new</a>
+                                <a href="newIntern.php">new</a>
                             </li>
                             <li>
                                 more
@@ -50,27 +49,29 @@ session_start();
             </div>
         </header>
         <div class="container">
-            <h1>List of departements</h1>
+            <h1>List of interns</h1>
 
             <table>
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>admin</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Birthday</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($deps as $d) {
+                    foreach ($interns as $i) {
                         echo '<tr>';
-                        echo '<td>' . $d['id'] . '</td>';
-                        echo '<td>' . $d['name'] . '</td>';
-                        echo '<td>' . $d['firstname'] . ' ' . $d['lastname'] .  '</td>';
-                        echo '<td>' . '<a href="deleteDepartement.php?id=' . $d['id'] . '"  ><i class="fa fa-trash" aria-hidden="true"></i></a>' . '</td>';
-                        echo '<td>' . '<a href="updateDepartement.php?id=' . $d['id'] . '"  ><i class="fa fa-pencil" aria-hidden="true"></i>
+                        echo '<td>' . $i['id'] . '</td>';
+                        echo '<td>' . $i['firstname'] . '</td>';
+                        echo '<td>' . $i['lastname'] .  '</td>';
+                        echo '<td>' . $i['birthday'] .  '</td>';
+                        echo '<td>' . '<a href="#"  onclick="return confirm(\'Are you sure you want to Remove?\');"><i class="fa fa-trash" aria-hidden="true"></i></a>' . '</td>';
+                        echo '<td>' . '<a href="updateIntern.php?id=' . $i['id'] . '"  ><i class="fa fa-pencil" aria-hidden="true"></i>
                                 </a>' . '</td>';
                         echo '</tr>';
                     }
