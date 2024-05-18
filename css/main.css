@@ -36,6 +36,7 @@ main {
   width: 100%;
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
 .container {
@@ -103,6 +104,7 @@ nav ul li {
   text-transform: uppercase;
   font-size: 0.9rem;
   font-weight: 400;
+  position: relative;
 }
 
 nav ul li a {
@@ -143,6 +145,17 @@ nav ul li a {
   text-transform: uppercase;
   background-color: var(--main-text-color);
   color: var(--main-back-color);
+}
+
+.home-logout {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}
+
+.home-logout i {
+  color: var(--main-text-color);
+  font-size: 30px;
 }
 
 /*Start login page */
@@ -204,9 +217,80 @@ nav ul li a {
 }
 
 .erreur {
+  animation: welcomeAnim 3000ms;
   color: var(--main-alert-color);
   font-weight: 300;
   font-size: 80%;
 }
 
 /*End login page */
+
+/*Drop down Start*/
+
+ul li ul {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  padding-left: 0;
+  left: 0;
+  display: none;
+  background: white;
+}
+
+ul li:hover > ul,
+ul li ul:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+  min-width: 250px;
+  text-align: left;
+  padding-top: 20px;
+  box-shadow: 0px 3px 5px -1px #ccc;
+}
+
+ul li ul li {
+  clear: both;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 20px;
+  border-style: none;
+  padding-left: 20px;
+}
+
+ul li ul li a:hover {
+  padding-left: 10px;
+  border-left: 2px solid #060606;
+  transition: all 0.5s ease;
+}
+
+ul li ul li a {
+  transition: all 0.5s ease;
+}
+
+/*Drop down End*/
+
+/*Welcome animation start*/
+@keyframes welcomeAnim {
+  from {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 50;
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(0%);
+    opacity: 100;
+  }
+}
+
+.welcome-text {
+  animation: welcomeAnim 3000ms;
+  font-size: 40px;
+  font-weight: 400;
+  padding-top: 40px;
+}
+/*Welcome animation start*/

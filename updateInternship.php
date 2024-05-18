@@ -10,6 +10,17 @@ $sql = 'Select * from intern';
 $statement = $conn->query($sql);
 $interns = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+$sql = 'Select * from internship where iddep =19 and idintern=18';
+
+$stmt->execute(
+  [
+    'idd' => $_GET['iddep'],
+    'idi' => $_GET['idintern']
+  ]
+);
+
+$internship = $stmt->fetch();
+
 session_start();
 ?>
 
@@ -64,7 +75,7 @@ session_start();
         </div>
 
         <div class="input-group">
-          <button name="saveInternship">save</button>
+          <button name="updateInternship">save</button>
         </div>
 
       </form>

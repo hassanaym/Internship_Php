@@ -2,7 +2,7 @@
 require_once 'dbconnect.php';
 
 $sql = 'Delete From departement where id=:a';
-
+echo $_GET['id'];
 $statement = $conn->prepare($sql);
 
 $statement->execute([
@@ -11,5 +11,3 @@ $statement->execute([
 
 
 header('Location: departements.php');
-
-?>

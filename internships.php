@@ -1,7 +1,7 @@
 <?php
 require_once 'session.php';
 require_once 'dbconnect.php';
-$sql = 'Select i.firstname `i.firstname`, i.lastname `i.lastname`, d.name `d.name`, a.firstname  `a.firstname`, a.lastname `a.lastname`,startsat, endsat from internship it
+$sql = 'Select i.id `i.id`,i.firstname `i.firstname`, i.lastname `i.lastname`, d.name `d.name`, d.id `d.id`, a.firstname  `a.firstname`, a.lastname `a.lastname`,startsat, endsat from internship it
 inner join intern i on i.id = it.idintern 
 inner join departement d on it.iddep = d.id 
 inner join admin a on a.id = it.idadmin';
@@ -33,14 +33,15 @@ $interns = $statement->fetchAll(PDO::FETCH_ASSOC);
                     <nav>
                         <ul>
                             <li>
-                                <a href="home.php">home</a>
-
-                            </li>
-                            <li>
                                 <a href="newInternship.php">new</a>
                             </li>
                             <li>
-                                more
+                                <a href="#">More &dtrif;</a>
+                                <ul class="dropdown">
+                                    <li><a href="interns.php">Interns</a></li>
+                                    <li><a href="departements.php">Departements</a></li>
+                                    <li><a href="home.php">Home</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </nav>
@@ -78,8 +79,8 @@ $interns = $statement->fetchAll(PDO::FETCH_ASSOC);
                         echo '<td>' . $i['a.firstname'] . ' ' . $i['a.firstname'] . '</td>';
                         echo '<td>' . $i['startsat'] .  '</td>';
                         echo '<td>' . $i['endsat'] .  '</td>';
-                        echo '<td>' . '<a href="#"  onclick="return confirm(\'Are you sure you want to Remove?\');"><i class="fa fa-trash" aria-hidden="true"></i></a>' . '</td>';
-                        echo '<td>' . '<a href="updateIntern.php?id=' . $i['id'] . '"  ><i class="fa fa-pencil" aria-hidden="true"></i>
+                        echo '<td>' . '<a href="deleteInternship.php?iddep=' . $i['d.id'] . '&idintern=' . $i['i.id'] . '"  onclick="return confirm(\'Are you sure you want to delete this internship?\');"><i class="fa fa-trash" aria-hidden="true"></i></a>' . '</td>';
+                        echo '<td>' . '<a href="updateInternship.php?iddep=' . $i['d.id'] . '&idintern=' . $i['i.id'] . '"  ><i class="fa fa-pencil" aria-hidden="true"></i>
                                 </a>' . '</td>';
                         echo '</tr>';
                     }

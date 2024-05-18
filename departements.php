@@ -30,14 +30,15 @@ session_start();
                     <nav>
                         <ul>
                             <li>
-                                <a href="home.php">home</a>
-
-                            </li>
-                            <li>
                                 <a href="newDepartement.php">new</a>
                             </li>
                             <li>
-                                more
+                                <a href="#">More &dtrif;</a>
+                                <ul class="dropdown">
+                                    <li><a href="interns.php">Interns</a></li>
+                                    <li><a href="internships.php">Internships</a></li>
+                                    <li><a href="home.php">Home</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </nav>
@@ -69,7 +70,7 @@ session_start();
                         echo '<td>' . $d['id'] . '</td>';
                         echo '<td>' . $d['name'] . '</td>';
                         echo '<td>' . $d['firstname'] . ' ' . $d['lastname'] .  '</td>';
-                        echo '<td>' . '<a href="deleteDepartement.php?id=' . $d['id'] . '"  ><i class="fa fa-trash" aria-hidden="true"></i></a>' . '</td>';
+                        echo '<td>' . '<a href="deleteDepartement.php?id=' . $d['id'] . '"  onclick="return confirm(\'Are you sure you want to delete this departement?\');"><i class="fa fa-trash" aria-hidden="true"></i></a>' . '</td>';
                         echo '<td>' . '<a href="updateDepartement.php?id=' . $d['id'] . '"  ><i class="fa fa-pencil" aria-hidden="true"></i>
                                 </a>' . '</td>';
                         echo '</tr>';

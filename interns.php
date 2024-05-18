@@ -1,7 +1,11 @@
 <?php
 require_once 'session.php';
 require_once 'dbconnect.php';
-$sql = 'Select * from intern';
+$sql = 'Select i.id `i.id`, i.firstname `i.firstname`, 
+i.lastname `i.lastname`, i.birthday `i.birthday`, 
+a.firstname `a.firstname`, a.lastname `a.lastname`  
+from intern i 
+inner join admin a on a.id = i.idadmin';
 $statement = $conn->query($sql);
 $interns = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -29,14 +33,15 @@ $interns = $statement->fetchAll(PDO::FETCH_ASSOC);
                     <nav>
                         <ul>
                             <li>
-                                <a href="home.php">home</a>
-
-                            </li>
-                            <li>
                                 <a href="newIntern.php">new</a>
                             </li>
                             <li>
-                                more
+                                <a href="#">More &dtrif;</a>
+                                <ul class="dropdown">
+                                    <li><a href="departements.php">Departements</a></li>
+                                    <li><a href="internships.php">Internships</a></li>
+                                    <li><a href="home.php">Home</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </nav>
@@ -58,6 +63,7 @@ $interns = $statement->fetchAll(PDO::FETCH_ASSOC);
                         <th>First name</th>
                         <th>Last name</th>
                         <th>Birthday</th>
+                        <th>Admin</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -66,12 +72,13 @@ $interns = $statement->fetchAll(PDO::FETCH_ASSOC);
                     <?php
                     foreach ($interns as $i) {
                         echo '<tr>';
-                        echo '<td>' . $i['id'] . '</td>';
-                        echo '<td>' . $i['firstname'] . '</td>';
-                        echo '<td>' . $i['lastname'] .  '</td>';
-                        echo '<td>' . $i['birthday'] .  '</td>';
-                        echo '<td>' . '<a href="#"  onclick="return confirm(\'Are you sure you want to Remove?\');"><i class="fa fa-trash" aria-hidden="true"></i></a>' . '</td>';
-                        echo '<td>' . '<a href="updateIntern.php?id=' . $i['id'] . '"  ><i class="fa fa-pencil" aria-hidden="true"></i>
+                        echo '<td>' . $i['i.id'] . '</td>';
+                        echo '<td>' . $i['i.firstname'] . '</td>';
+                        echo '<td>' . $i['i.lastname'] .  '</td>';
+                        echo '<td>' . $i['i.birthday'] .  '</td>';
+                        echo '<td>' . $i['a.firstname'] . ' ' . $i['a.lastname'] . '</td>';
+                        echo '<td>' . '<a href="deleteIntern.php?id=' . $i['i.id'] . '"  onclick="return confirm(\'Are you sure you want to delete intern?\');"><i class="fa fa-trash" aria-hidden="true"></i></a>' . '</td>';
+                        echo '<td>' . '<a href="updateIntern.php?id=' . $i['i.id'] . '"  ><i class="fa fa-pencil" aria-hidden="true"></i>
                                 </a>' . '</td>';
                         echo '</tr>';
                     }
