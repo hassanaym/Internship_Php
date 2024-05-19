@@ -10,17 +10,17 @@ $sql = 'Select * from intern';
 $statement = $conn->query($sql);
 $interns = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-$sql = 'Select * from internship where iddep =19 and idintern=18';
+
+$stmt = $conn->prepare("Select * from internship where iddep=:d and idintern=:i");
 
 $stmt->execute(
   [
-    'idd' => $_GET['iddep'],
-    'idi' => $_GET['idintern']
+    'd' => $_GET['iddep'],
+    'i' => $_GET['idintern']
   ]
 );
 
 $internship = $stmt->fetch();
-
 session_start();
 ?>
 
@@ -37,7 +37,7 @@ session_start();
 <body>
   <main class="login-main">
     <div class="form-container">
-      <form action="saveInternship.php" method="post">
+      <form action="saveInternship.php?iddep=<?php echo $_GET['iddep'] ?>&idintern=<?php echo $_GET['idintern'] ?>" method="post">
 
 
         <div class="input-group">
@@ -66,12 +66,12 @@ session_start();
 
         <div class="input-group">
           <label for="startsat ">Starts at</label>
-          <input type="date" name="startsat" id="startsat" class="name">
+          <input type="date" name="startsat" id="startsat" class="name" value="<?php echo $internship['startsAt']; ?>">
         </div>
 
         <div class="input-group">
           <label for="endsat">Ends at</label>
-          <input type="date" name="endsat" id="endsat" class="name">
+          <input type="date" name="endsat" id="endsat" class="name" value="<?php echo $internship['endsAt']; ?>">
         </div>
 
         <div class="input-group">

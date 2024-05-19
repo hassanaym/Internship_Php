@@ -17,16 +17,16 @@ if (isset($_POST['saveInternship'])) {
 }
 
 
-if (isset($_POST['updateIntern'])) {
-    $sql = 'update internship set starts=:s, endsat=:e where iddep=:d and idadmin=:a and idintern=:i';
+if (isset($_POST['updateInternship'])) {
+
+    $sql = 'update internship set startsAt=:s, endsAt=:e where iddep=:d  and idintern=:i';
 
     $statement = $conn->prepare($sql);
     $statement->execute([
-        ':d' => $_POST['departement'],
-        ':i' => $_POST['intern'],
-        ':a' => $_SESSION['iduser'],
-        ':i' => $_POST['startsat'],
-        ':i' => $_POST['endsat']
+        ':d' => $_GET['iddep'],
+        ':i' => $_GET['idintern'],
+        ':s' => $_POST['startsat'],
+        ':e' => $_POST['endsat']
     ]);
 }
 
